@@ -1,5 +1,5 @@
-const dev = require('./config/webpack.dev')
-const build = require('./config/webpack.prod')
+const dev = require('./libs/webpack.dev')
+const build = require('./libs/webpack.prod')
 
 console.log(dev)
 console.log(build)
