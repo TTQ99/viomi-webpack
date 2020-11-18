@@ -6,7 +6,6 @@ const Webpack = require('webpack')
 module.exports = merge(baseConfig, {
   mode: 'production',
   plugins: [
-    // new BundleAnalyzerPlugin()
     new Webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
@@ -17,9 +16,9 @@ module.exports = merge(baseConfig, {
   optimization: {
     minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-      })
+      // new UglifyJsPlugin({
+      //   test: /\.js$/i,
+      // })
     ],
     splitChunks: {
       chunks: 'async',

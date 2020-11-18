@@ -1,11 +1,12 @@
 const { merge } = require('webpack-merge')
-const baseConfig = require('./webpack.config.base')
+const baseConfig = require('./webpack.base')
 const path = require('path')
 const Webpack = require('webpack')
 module.exports = merge(
   baseConfig,
   {
     mode: 'development',
+    devtool: 'cheap-module-eval-source-map',
     plugins: [
       new Webpack.DefinePlugin({
         'process.env': {

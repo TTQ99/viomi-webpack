@@ -8,24 +8,21 @@ const MimiCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-
-
 module.exports = {
-  entry: '../src/main.js',
+  entry: path.resolve('./src/main.js'),
   output: {
     path: path.resolve('dist'),
     filename: 'static/js/[name]_[hash:8].js'
   },
-  devtool: 'cheap-module-eval-source-map',
   resolve: {
     modules: [
       "node_modules",
-      path.resolve(__dirname, "/src")
+      path.resolve("/src")
     ],
     extensions: ['.js', '.vue', '*'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '../', 'src')
+      '@': path.resolve('src')
     }
   },
   module: {
@@ -91,14 +88,14 @@ module.exports = {
     new Webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: '../index.html'
+      template: './index.html'
     }),
 
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, '../static'),
-          to: path.resolve(__dirname, './dist/static'),
+          from: path.resolve('./static'),
+          to: path.resolve('./dist/static'),
         }
       ]
     }),
