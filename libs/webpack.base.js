@@ -8,7 +8,9 @@ const MimiCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve('./src/main.js'),
+  entry: {
+    main: path.resolve('./src/main.js')
+  },
   output: {
     path: path.resolve('dist'),
     filename: 'static/js/[name]_[hash:8].js'
@@ -88,7 +90,9 @@ module.exports = {
     new Webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './index.html',
+      filename: 'index.html',
+      chunks: ['main']
     }),
     new CopyWebpackPlugin({
       patterns: [
