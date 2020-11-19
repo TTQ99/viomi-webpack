@@ -6,7 +6,6 @@ const Webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MimiCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: path.resolve('./src/main.js'),
@@ -66,6 +65,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           name: 'static/font/[name].[ext]',
+          limit: 8192,
         },
       },
       {
@@ -90,7 +90,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
-
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -104,10 +103,4 @@ module.exports = {
       ignoreOrder: true
     }),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
-  }
 }

@@ -1,7 +1,8 @@
 const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 const Webpack = require('webpack')
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -12,14 +13,11 @@ module.exports = merge(baseConfig, {
         ENV_CONFIG: `"${process.env.env_config}"`,
       },
     }),
+    new CssMinimizerPlugin({
+      test: /\.css$/i,
+    }),
   ],
   optimization: {
-    minimize: true,
-    minimizer: [
-      // new UglifyJsPlugin({
-      //   test: /\.js$/i,
-      // })
-    ],
     splitChunks: {
       chunks: 'async',
       minSize: 0,
